@@ -64,7 +64,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
       ),
       //Rellenar al rededor
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(65.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
