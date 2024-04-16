@@ -136,9 +136,9 @@ class _DropdownButtonOperacionState extends State<DropdownButtonOperacion> {
         color: Colors.deepPurpleAccent,
       ),
       onChanged: (String? value) {
-        // This is called when the user selects an item.
         setState(() {
           dropdownValue = value!;
+          widget.onChanged?.call(getOperacionFromDropdownValue(value));
         });
       },
       items: list.map<DropdownMenuItem<String>>((String value) {
