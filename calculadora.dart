@@ -36,7 +36,7 @@ class Potencia extends Operacion {
 class Multiplicacion extends Operacion {
   @override
   double calcular(double num1, double num2) {
-    return num1 * num1;
+    return num1 * num2;
   }
 }
 
@@ -64,7 +64,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculator'),
+        title: Text('Calculadora'),
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
@@ -114,7 +114,9 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
 }
 
 class DropdownButtonOperacion extends StatefulWidget {
-  const DropdownButtonOperacion({super.key});
+  final ValueChanged<Operacion?>? onChanged;
+
+  const DropdownButtonOperacion({Key? key, this.onChanged}) : super(key: key);
 
   @override
   State<DropdownButtonOperacion> createState() =>
@@ -149,6 +151,7 @@ class _DropdownButtonOperacionState extends State<DropdownButtonOperacion> {
       }).toList(),
     );
   }
+
   Operacion? getOperacionFromDropdownValue(String? value) {
     switch (value) {
       case 'Suma':
