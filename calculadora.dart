@@ -15,6 +15,7 @@ class CalculadoraApp extends StatelessWidget {
   }
 }
 
+//Clase abastracta de la operacion
 abstract class Operacion {
   double calcular(double num1, double num2);
 }
@@ -48,17 +49,12 @@ class CalculadoraScreen extends StatefulWidget {
 }
 
 class _CalculadoraScreenState extends State<CalculadoraScreen> {
+    //Controlador de los numeros para elacceso y control
   TextEditingController num1Control = TextEditingController();
   TextEditingController num2Control = TextEditingController();
   double resultado = 0.0;
+  //Almacena la operación seleccionada y evita que se seleccione nuinguna operacion
   Operacion? operacionSeleccionada;
-
-  @override
-  void dispose() {
-    num1Control.dispose();
-    num2Control.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +62,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
       appBar: AppBar(
         title: Text('Calculadora'),
       ),
+      //Rellenar al rededor
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
@@ -137,6 +134,9 @@ class _DropdownButtonOperacionState extends State<DropdownButtonOperacion> {
         height: 2,
         color: Colors.deepPurpleAccent,
       ),
+      //Actualiza el estado del widget y llama a la función de cambio 
+      //de selección proporcionada cuando el usuario selecciona un 
+      //nuevo valor en el menú desplegable.
       onChanged: (String? value) {
         setState(() {
           dropdownValue = value!;
@@ -151,7 +151,8 @@ class _DropdownButtonOperacionState extends State<DropdownButtonOperacion> {
       }).toList(),
     );
   }
-
+  //mapea un valor de cadena seleccionado en un menú desplegable a 
+  //un objeto de operación correspondiente
   Operacion? getOperacionFromDropdownValue(String? value) {
     switch (value) {
       case 'Suma':
