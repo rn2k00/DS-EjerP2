@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 void main() {
-  runApp(CalculatorApp());
+  runApp(CalculadoraApp());
 }
 
-class CalculatorApp extends StatelessWidget {
+class CalculadoraApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Calculadora',
-      home: CalculatorScreen(),
+      home: CalculadoraScreen(),
     );
   }
 }
@@ -42,12 +42,12 @@ class Multiplicacion extends Operacion {
 
 const List<String> list = <String>['Suma', 'Multiplicacion', 'Potencia'];
 
-class CalculatorScreen extends StatefulWidget {
+class CalculadoraScreen extends StatefulWidget {
   @override
-  _CalculatorScreenState createState() => _CalculatorScreenState();
+  _CalculadoraScreenState createState() => _CalculadoraScreenState();
 }
 
-class _CalculatorScreenState extends State<CalculatorScreen> {
+class _CalculadoraScreenState extends State<CalculadoraScreen> {
   TextEditingController num1Control = TextEditingController();
   TextEditingController num2Control = TextEditingController();
   double resultado = 0.0;
