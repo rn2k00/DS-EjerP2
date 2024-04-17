@@ -8,11 +8,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Pizza & Bocata Builder',
+      title: 'Pizza & Bocata Builder',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Pizza & Bocata Builder Demo'),
+      home: MyHomePage(title: 'Pizza & Bocata Builder'),
     );
   }
 }
@@ -33,6 +33,7 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
+              //Cuando se pulse iriamos a la pagina pizzaoptionspage
               onPressed: () {
                 Navigator.push(
                   context,
@@ -62,7 +63,7 @@ class PizzaOptionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pizza Options'),
+        title: Text('Elegir Pizza'),
       ),
       body: Center(
         child: Column(
@@ -70,19 +71,19 @@ class PizzaOptionsPage extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               onPressed: () {
-                // Implementar acción para construir Pizza BBQ
+                // Añadir codigo de que hace cada boton
               },
               child: Text('Construir Pizza BBQ'),
             ),
             ElevatedButton(
               onPressed: () {
-                // Implementar acción para construir Pizza Veggie
+                 // Añadir codigo de que hace cada boton
               },
               child: Text('Construir Pizza Veggie'),
             ),
             ElevatedButton(
               onPressed: () {
-                // Implementar acción para construir Pizza Infantil
+                 // Añadir codigo de que hace cada boton
               },
               child: Text('Construir Pizza Infantil'),
             ),
@@ -104,7 +105,7 @@ class BocataOptionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bocata Options'),
+        title: Text('Elegir Bpocata'),
       ),
       body: Center(
         child: Column(
@@ -112,19 +113,19 @@ class BocataOptionsPage extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               onPressed: () {
-                // Implementar acción para construir Bocata Serranito
+                 // Añadir codigo de que hace cada boton
               },
               child: Text('Construir Bocata Serranito'),
             ),
             ElevatedButton(
               onPressed: () {
-                // Implementar acción para construir Bocata Calamares
+                 // Añadir codigo de que hace cada boton
               },
               child: Text('Construir Bocata Calamares'),
             ),
             ElevatedButton(
               onPressed: () {
-                // Implementar acción para construir Bocata Pepito
+                // Añadir codigo de que hace cada boton
               },
               child: Text('Construir Bocata Pepito'),
             ),
