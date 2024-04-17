@@ -15,7 +15,7 @@ class CalculadoraApp extends StatelessWidget {
   }
 }
 
-//Clase abastracta de la operacion
+// Clase abstracta de la operación
 abstract class Operacion {
   double calcular(double num1, double num2);
 }
@@ -41,8 +41,6 @@ class Multiplicacion extends Operacion {
   }
 }
 
-const List<String> list = <String>['Suma', 'Multiplicacion', 'Potencia'];
-
 class CalculadoraScreen extends StatefulWidget {
   @override
   _CalculadoraScreenState createState() => _CalculadoraScreenState();
@@ -53,8 +51,8 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
   TextEditingController num1Control = TextEditingController();
   TextEditingController num2Control = TextEditingController();
   double resultado = 0.0;
-  //Almacena la operación seleccionada y evita que se seleccione nuinguna operacion
-  Operacion? operacionSeleccionada;
+  //Operacion seleccionada por defecto
+  String operacionSeleccionada = 'Suma';
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +60,13 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
       appBar: AppBar(
         title: Text('Calculadora'),
       ),
-      //Rellenar al rededor
+      //Rellenamos al rededor con espacios en blanco
       body: Padding(
-        padding: EdgeInsets.all(65.0),
+        padding: EdgeInsets.all(20.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            SizedBox(height: 20),
             TextField(
               controller: num1Control,
               keyboardType: TextInputType.number,
@@ -80,12 +78,27 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
               decoration: InputDecoration(labelText: 'Inserte valor 2'),
             ),
             SizedBox(height: 20),
-            DropdownButtonOperacion(
-              onChanged: (Operacion? value) {
+            DropdownButton<String>(
+              value: operacionSeleccionada,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+              ),
+              onChanged: (String? value) {
                 setState(() {
-                  operacionSeleccionada = value;
+                  operacionSeleccionada = value!;
                 });
               },
+              items: ['Suma', 'Multiplicacion', 'Potencia']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
             SizedBox(height: 20),
             ElevatedButton(
@@ -100,6 +113,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
             Text(
               'Resultado: $resultado',
               style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
             )
           ],
         ),
@@ -110,71 +124,30 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
   double calcularResultado() {
     if (num1Control.text.isEmpty ||
         num2Control.text.isEmpty ||
-        operacionSeleccionada == null) {
+        operacionSeleccionada.isEmpty) {
       return 0.0;
     }
 
     double num1 = double.parse(num1Control.text);
     double num2 = double.parse(num2Control.text);
+    Operacion? operacion;
 
-    return operacionSeleccionada!.calcular(num1, num2);
-  }
-}
-
-class DropdownButtonOperacion extends StatefulWidget {
-  final ValueChanged<Operacion?>? onChanged;
-
-  const DropdownButtonOperacion({Key? key, this.onChanged}) : super(key: key);
-
-  @override
-  State<DropdownButtonOperacion> createState() =>
-      _DropdownButtonOperacionState();
-}
-
-class _DropdownButtonOperacionState extends State<DropdownButtonOperacion> {
-  String dropdownValue = list.first;
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      //Actualiza el estado del widget y llama a la función de cambio
-      //de selección proporcionada cuando el usuario selecciona un
-      //nuevo valor en el menú desplegable.
-      onChanged: (String? value) {
-        setState(() {
-          dropdownValue = value!;
-          widget.onChanged?.call(getOperacionFromDropdownValue(value));
-        });
-      },
-      items: list.map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
-  }
-
-  //mapea un valor de cadena seleccionado en un menú desplegable a
-  //un objeto de operación correspondiente
-  Operacion? getOperacionFromDropdownValue(String? value) {
-    switch (value) {
+    switch (operacionSeleccionada) {
       case 'Suma':
-        return Suma();
+        operacion = Suma();
+        break;
       case 'Multiplicacion':
-        return Multiplicacion();
+        operacion = Multiplicacion();
+        break;
       case 'Potencia':
-        return Potencia();
-      default:
-        return null;
+        operacion = Potencia();
+        break;
+    }
+
+    if (operacion != null) {
+      return operacion.calcular(num1, num2);
+    } else {
+      return 0.0;
     }
   }
 }
