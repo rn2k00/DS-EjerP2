@@ -49,7 +49,7 @@ class CalculadoraScreen extends StatefulWidget {
 }
 
 class _CalculadoraScreenState extends State<CalculadoraScreen> {
-    //Controlador de los numeros para elacceso y control
+  //Controlador de los numeros para elacceso y control
   TextEditingController num1Control = TextEditingController();
   TextEditingController num2Control = TextEditingController();
   double resultado = 0.0;
@@ -79,6 +79,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(labelText: 'Inserte valor 2'),
             ),
+            SizedBox(height: 20),
             DropdownButtonOperacion(
               onChanged: (Operacion? value) {
                 setState(() {
@@ -87,16 +88,26 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
               },
             ),
             SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  resultado = calcularResultado();
+                });
+              },
+              child: Text('='),
+            ),
+            SizedBox(height: 20),
             Text(
-              'Resultado: ${calcularResultado()}',
+              'Resultado: $resultado',
               style: TextStyle(fontSize: 20),
-              )
+            )
           ],
         ),
       ),
     );
   }
-   double calcularResultado() {
+
+  double calcularResultado() {
     if (num1Control.text.isEmpty ||
         num2Control.text.isEmpty ||
         operacionSeleccionada == null) {
@@ -134,8 +145,8 @@ class _DropdownButtonOperacionState extends State<DropdownButtonOperacion> {
         height: 2,
         color: Colors.deepPurpleAccent,
       ),
-      //Actualiza el estado del widget y llama a la función de cambio 
-      //de selección proporcionada cuando el usuario selecciona un 
+      //Actualiza el estado del widget y llama a la función de cambio
+      //de selección proporcionada cuando el usuario selecciona un
       //nuevo valor en el menú desplegable.
       onChanged: (String? value) {
         setState(() {
@@ -151,7 +162,8 @@ class _DropdownButtonOperacionState extends State<DropdownButtonOperacion> {
       }).toList(),
     );
   }
-  //mapea un valor de cadena seleccionado en un menú desplegable a 
+
+  //mapea un valor de cadena seleccionado en un menú desplegable a
   //un objeto de operación correspondiente
   Operacion? getOperacionFromDropdownValue(String? value) {
     switch (value) {
