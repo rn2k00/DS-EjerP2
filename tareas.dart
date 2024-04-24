@@ -58,6 +58,7 @@ class _ListaDeTareasState extends State<ListaDeTareas> {
                 _agregarTarea(value);
               },
             ),
+            SizedBox(height: 20),
             // Botón para agregar la tarea
             ElevatedButton(
               onPressed: () {
@@ -65,6 +66,7 @@ class _ListaDeTareasState extends State<ListaDeTareas> {
               },
               child: Text('Agregar Tarea'),
             ),
+            SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: _gestorDeTareas.tareas.length,
