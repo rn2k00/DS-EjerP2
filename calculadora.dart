@@ -5,7 +5,7 @@ void main() {
   runApp(CalculadoraApp());
 }
 
-// Clase abstracta de la operación, el modelo
+// Clase abstracta de la operación
 abstract class Operacion {
   double calcular(double num1, double num2);
 }
@@ -31,9 +31,8 @@ class Multiplicacion extends Operacion {
   }
 }
 
-// BLoC para la lógica de la calculadora (Controlador))
+// BLoC para la lógica de la calculadora
 class CalculadoraBloc {
-  //Clase en Flutter que se utiliza para controlar un campo de texto editable
   late TextEditingController num1Controller;
   late TextEditingController num2Controller;
   late String operacionSeleccionada;
@@ -82,7 +81,6 @@ class CalculadoraBloc {
   }
 }
 
-//Vista
 class CalculadoraApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -92,7 +90,6 @@ class CalculadoraApp extends StatelessWidget {
     );
   }
 }
-
 
 class CalculadoraScreen extends StatefulWidget {
   @override
@@ -121,7 +118,7 @@ class _CalculadoraScreenState extends State<CalculadoraScreen> {
         title: Text('Calculadora'),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: EdgeInsets.all(60.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
