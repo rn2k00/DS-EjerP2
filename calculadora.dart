@@ -5,7 +5,7 @@ void main() {
   runApp(CalculadoraApp());
 }
 
-// Clase abstracta de la operación
+// Clase abstracta de la operación - modelo
 abstract class Operacion {
   double calcular(double num1, double num2);
 }
@@ -31,7 +31,7 @@ class Multiplicacion extends Operacion {
   }
 }
 
-// BLoC para la lógica de la calculadora
+// BLoC para la lógica de la calculadora - controlador
 class CalculadoraBloc {
   late TextEditingController num1Controller;
   late TextEditingController num2Controller;
