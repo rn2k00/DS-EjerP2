@@ -28,18 +28,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String selectedUser = 'Usuario 1';
+  String selectedUser = 'René';
   Map<String, List<Pizza>> userPizzaOrders = {
-    'Usuario 1': [],
-    'Usuario 2': [],
-    'Usuario 3': [],
-    'Usuario 4': []
+    'René': [],
+    'Angela': [],
+    'Gonzalo': [],
+    'Migel': []
   };
   Map<String, List<Bocata>> userBocataOrders = {
-    'Usuario 1': [],
-    'Usuario 2': [],
-    'Usuario 3': [],
-    'Usuario 4': []
+    'René': [],
+    'Angela': [],
+    'Gonzalo': [],
+    'Migel': []
   };
 
   void changeUser(String user) {
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             onSelected: changeUser,
             itemBuilder: (BuildContext context) {
-              return ['Usuario 1', 'Usuario 2', 'Usuario 3', 'Usuario 4']
+              return ['René', 'Angela', 'Gonzalo', 'Miguel']
                   .map((String user) {
                 return PopupMenuItem<String>(
                   value: user,
@@ -190,9 +190,9 @@ class PizzaOptionsPage extends StatefulWidget {
 
   const PizzaOptionsPage(
       {super.key,
-      required this.user,
-      required this.addOrder,
-      required this.pizzaOrders});
+        required this.user,
+        required this.addOrder,
+        required this.pizzaOrders});
 
   @override
   State<PizzaOptionsPage> createState() => _PizzaOptionsPageState();
@@ -264,7 +264,7 @@ class _PizzaOptionsPageState extends State<PizzaOptionsPage> {
               itemBuilder: (context, index) {
                 return ListTile(
                   title:
-                      Text('Pizza ${index + 1}: ${widget.pizzaOrders[index].nombre}'),
+                  Text('Pizza ${index + 1}: ${widget.pizzaOrders[index].nombre}'),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete),
                     onPressed: () {
@@ -290,9 +290,9 @@ class BocataOptionsPage extends StatefulWidget {
 
   const BocataOptionsPage(
       {super.key,
-      required this.user,
-      required this.addOrder,
-      required this.bocataOrders});
+        required this.user,
+        required this.addOrder,
+        required this.bocataOrders});
 
   @override
   State<BocataOptionsPage> createState() => _BocataOptionsPageState();
