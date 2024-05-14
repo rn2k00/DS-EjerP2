@@ -33,13 +33,13 @@ class _MyHomePageState extends State<MyHomePage> {
     'René': [],
     'Angela': [],
     'Gonzalo': [],
-    'Migel': []
+    'Miguel': []
   };
   Map<String, List<Bocata>> userBocataOrders = {
     'René': [],
     'Angela': [],
     'Gonzalo': [],
-    'Migel': []
+    'Miguel': []
   };
 
   void changeUser(String user) {
